@@ -7,6 +7,7 @@
 .results > p {
     margin-left: 25px;
     color:grey;
+    max-height: 550px;
 }
 
 .results__container {
@@ -22,4 +23,9 @@
 
 .MuiTableCell-head {
     font-weight: 800 !important;
+}
+
+.MuiTableRow-root:hover {
+    background-color: rgb(219, 218, 218);
+    cursor: pointer;
 }
