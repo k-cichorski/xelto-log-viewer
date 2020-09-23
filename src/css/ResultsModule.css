@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    min-height: 350px;
 }
 
 .results > p {
@@ -23,9 +24,19 @@
 
 .MuiTableCell-head {
     font-weight: 800 !important;
+    background-color: grey;
+}
+
+.MuiTableCell-stickyHeader {
+    background-color: gray !important;
 }
 
 .MuiTableRow-root:hover {
     background-color: rgb(219, 218, 218);
     cursor: pointer;
+}
+
+.MuiTableRow-head:hover {
+    background-color: white;
+    cursor: default;
 }

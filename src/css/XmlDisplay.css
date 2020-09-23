@@ -1,0 +1,28 @@
+.xmlDisplay {
+  width: 300px;
+  width: fit-content;
+  width: 50%;
+  height: 100%;
+}
+
+.xmlDisplay__table {
+  height: 100%;
+  max-height: 250px;
+}
+
+.table__xmlCell {
+  min-height: 100px !important;
+  overflow-y: auto;
+  margin: auto 0 !important;
+  max-height: 250px;
+}
+
+.table__xmlCell:hover {
+  background-color: white !important;
+  cursor: default;
+}
+
+.xmlDisplay__tableContainer {
+  height: 100%;
+  max-height: 250px;
+}
