@@ -1,5 +1,42 @@
+html, body {
+  overflow-x: hidden;
+}
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: 'Titillium Web', sans-serif !important;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 4px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #666666;
+  border: 0px none  #666666;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #666666;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-track:active {
+  background: #ffffff;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }

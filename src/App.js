@@ -3,6 +3,7 @@ import './App.css';
 import SearchModule from './components/SearchModule';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
+import ResultsModule from './components/ResultsModule';
 
 function App() {
   
@@ -12,6 +13,7 @@ function App() {
       <div className='app'>
         <div className='app__container'>
           <SearchModule/>
+          <ResultsModule/>
         </div>
       </div>
     </MuiPickersUtilsProvider>

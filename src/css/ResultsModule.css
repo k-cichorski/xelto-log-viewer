@@ -1,0 +1,25 @@
+.results {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.results > p {
+    margin-left: 25px;
+    color:grey;
+}
+
+.results__container {
+    display: flex;
+    flex-direction: column;
+    width: 99%;
+    justify-content: center;
+    margin: 0 auto;
+    border: 1px solid grey;
+    border-radius: 4px;
+    overflow-y: auto;
+}
+
+.MuiTableCell-head {
+    font-weight: 800 !important;
+}

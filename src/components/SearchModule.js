@@ -32,11 +32,13 @@ function SearchModule() {
                                   format="DD/MM/yyyy" inputVariant='outlined'
                                   value={selectedDateTo}
                                   onChange={setSelectedDateTo}
-                                  invalidDateMessage='Wpisz poprawną datę'/>      
+                                  invalidDateMessage='Wpisz poprawną datę'/>
             </ThemeProvider>
 
-            <TextField variant='outlined' label='Użytkownik' onChange={e => setInputUserValue(e.target.value)}/>
-            <TextField variant='outlined' label='Status' onChange={e => setInputStatusValue(e.target.value)}/>
+            <TextField variant='outlined' label='Użytkownik'
+                       InputLabelProps={{shrink: true}} onChange={e => setInputUserValue(e.target.value)}/>
+            <TextField variant='outlined' label='Status'
+                       InputLabelProps={{shrink: true}} onChange={e => setInputStatusValue(e.target.value)}/>
 
             <IconButton className='form__searchButton' onClick={e => handleSubmit(e)}>
               <input type='submit' style={{display: 'none'}}/>

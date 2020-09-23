@@ -21,5 +21,8 @@ export default createMuiTheme({
           color: '#726F6F'
         }
       },
+      MuiTypography: {
+        color: '#ffffff'
+      }
     }
   })
