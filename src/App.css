@@ -1,0 +1,18 @@
+.app {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background-image: linear-gradient(to bottom, #CDBEBE, #7B7272);
+    color: white;
+}
+
+.app__container {
+    display: flex;
+    border-radius: 10px;
+    background-image: linear-gradient(to top, #353136, #1e1c1f);
+    height: 90vh;
+    width: 90vw;
+    -webkit-box-shadow: 0 8px 24px 13px rgba(0,0,0,0.6);
+    -moz-box-shadow: 0 8px 24px 13px rgba(0,0,0,0.6);
+    box-shadow: 0 8px 24px 13px rgba(0,0,0,0.6);
+}
