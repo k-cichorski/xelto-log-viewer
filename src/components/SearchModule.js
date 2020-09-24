@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import {IconButton} from '@material-ui/core';
 import { useStateValue } from '../store/StateProvider';
-import {fillResults} from '../store/reducer';
+import {fillResults, toggleLoadingAnimation} from '../store/reducer';
 import moment from 'moment';
 
 function SearchModule() {
@@ -35,6 +35,7 @@ function SearchModule() {
 
   const handleSubmit = async e => {
       e.preventDefault();
+      dispatch({type: toggleLoadingAnimation});
       try {
         let response = await fetch('http://localhost:9000/');
         response = await response.json();
@@ -43,8 +44,9 @@ function SearchModule() {
           type: fillResults,
           payload: results
         }
+        dispatch({type: toggleLoadingAnimation});
         dispatch(action);
-      } catch(err) {console.log(err);}
+      } catch(err) {alert(err);}
       
   }
 

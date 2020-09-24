@@ -1,10 +1,12 @@
 export const initialState = {
     searchResults: null,
-    selectedResult: null
+    selectedResult: null,
+    loadingData: false
 };
 
 export const fillResults = 'fillResults';
 export const selectResult = 'selectResult';
+export const toggleLoadingAnimation = 'toggleLoadingAnimation';
 
 function reducer(state, action) {
     switch(action.type){
@@ -19,6 +21,12 @@ function reducer(state, action) {
             return {
                 ...state,
                 selectedResult: selected
+            }
+
+        case toggleLoadingAnimation:
+            return {
+                ...state,
+                loadingData: !state.loadingData
             }
 
         default:

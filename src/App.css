@@ -25,3 +25,9 @@
     justify-content: space-evenly;
     height: max-content;
 }
+
+.loading__animation {
+    justify-content: center;
+    align-self: center;
+    margin-top: 20px;
+}

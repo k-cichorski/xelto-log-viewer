@@ -6,24 +6,27 @@ import MomentUtils from '@date-io/moment';
 import ResultsModule from './components/ResultsModule';
 import DisplayXML from './components/XmlDisplay';
 import { useStateValue } from './store/StateProvider';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function App() {
-  const [{searchResults, selectedResult}] = useStateValue();
+  const [{searchResults, selectedResult, loadingData}] = useStateValue();
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <div className='app'>
         <div className='app__container'>
           <SearchModule/>
-          {
-            searchResults &&
-              <ResultsModule props={{searchResults}} />
+
+          {loadingData?
+            <CircularProgress className='loading__animation'/>
+            :searchResults &&
+            <ResultsModule props={{searchResults}} />
+
           }
 
           {
             selectedResult && 
               <DisplayXML props={{selectedResult}} />
           }
-          
         </div>
       </div>
     </MuiPickersUtilsProvider>

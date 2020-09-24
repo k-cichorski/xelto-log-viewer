@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { useStateValue } from '../store/StateProvider';
-import {selectResult} from '../store/reducer';
+import {selectResult, toggleLoadingAnimation} from '../store/reducer';
 
 function ResultsModule({props}) {
 	let {searchResults} = props;
