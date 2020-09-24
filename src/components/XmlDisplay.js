@@ -9,24 +9,44 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 const DisplayXML = ({props}) => {
-	const {header, xmlString} = props;
+	const {selectedResult} = props;
 	return (
-			<div className='xmlDisplay'>
-					<TableContainer component={Paper} className='xmlDisplay__tableContainer'>
-							<Table stickyHeader className='xmlDisplay__table'>
-									<TableHead>
-											<TableRow>
-													<TableCell align='center'>{header}</TableCell>
-											</TableRow>
-									</TableHead>
+			<div className='xmlDisplay__container'>
+				<div className='xmlDisplay'>
+						<TableContainer component={Paper} className='xmlDisplay__tableContainer'>
+								<Table stickyHeader className='xmlDisplay__table'>
+										<TableHead>
+												<TableRow>
+														<TableCell align='center'>INPUT XML</TableCell>
+												</TableRow>
+										</TableHead>
 
-									<TableBody>
+										<TableBody>
+											<TableRow>
+												<TableCell align='center' className='table__xmlCell'>{selectedResult.Inputs}</TableCell>
+											</TableRow>
+										</TableBody>
+								</Table>
+						</TableContainer>
+				</div>
+
+				<div className='xmlDisplay'>
+				<TableContainer component={Paper} className='xmlDisplay__tableContainer'>
+						<Table stickyHeader className='xmlDisplay__table'>
+								<TableHead>
 										<TableRow>
-											<TableCell align='center' className='table__xmlCell'>{xmlString}</TableCell>
+												<TableCell align='center'>OUTPUT XML</TableCell>
 										</TableRow>
-									</TableBody>
-							</Table>
-					</TableContainer>
+								</TableHead>
+
+								<TableBody>
+									<TableRow>
+										<TableCell align='center' className='table__xmlCell'>{selectedResult.Output && selectedResult.Output}</TableCell>
+									</TableRow>
+								</TableBody>
+						</Table>
+				</TableContainer>
+				</div>
 			</div>
 	)
 }

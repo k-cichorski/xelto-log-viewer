@@ -5,23 +5,25 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
 import ResultsModule from './components/ResultsModule';
 import DisplayXML from './components/XmlDisplay';
+import { useStateValue } from './store/StateProvider';
 
 function App() {
-  
-
+  const [{searchResults, selectedResult}] = useStateValue();
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <div className='app'>
         <div className='app__container'>
           <SearchModule/>
-          <ResultsModule/>
+          {
+            searchResults &&
+              <ResultsModule props={{searchResults}} />
+          }
 
-          <div className='xmlDisplay__container'>
-            <DisplayXML props={{header: 'INPUT XML',
-                                xmlString: ''}}/>
-            <DisplayXML props={{header: 'OUTPUT XML',
-                                xmlString: ''}}/>
-          </div>
+          {
+            selectedResult && 
+              <DisplayXML props={{selectedResult}} />
+          }
+          
         </div>
       </div>
     </MuiPickersUtilsProvider>

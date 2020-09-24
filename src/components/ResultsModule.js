@@ -7,10 +7,21 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import dummyDb from '../dummyDb';
+import { useStateValue } from '../store/StateProvider';
+import {selectResult} from '../store/reducer';
 
-function ResultsModule() {
-
+function ResultsModule({props}) {
+	let {searchResults} = props;
+	const [, dispatch] = useStateValue();
+	
+	const handleRowClik = id => {
+			let action = {
+				type: selectResult,
+				payload: id
+			}
+			dispatch(action);
+	}
+	
 	return (
 			<div className='results'>
 				<div className='results__container'>
@@ -33,8 +44,8 @@ function ResultsModule() {
 							</TableHead>
 
 							<TableBody>
-								{dummyDb.map(row => (
-									<TableRow key={row.Id}>
+								{searchResults?.map(row => (
+									<TableRow key={row.Id} onClick={() => handleRowClik(row.Id)}>
 										<TableCell align='center' component='th' scope='row'>{row.MobileUserId}</TableCell>
 										<TableCell align='center'>{row.MobileDomain}</TableCell>
 										<TableCell align='center'>{row.Branch}</TableCell>
@@ -52,7 +63,7 @@ function ResultsModule() {
 						</Table>
 					</TableContainer>
 				</div>
-				<p>Wyniki: {dummyDb.length}</p>
+				<p>Wyniki: {searchResults?.length}</p>
 				
 			</div>
 	)

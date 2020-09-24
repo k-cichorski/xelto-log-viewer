@@ -6,15 +6,46 @@ import datePickerTheme from '../css/datePickerTheme';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import {IconButton} from '@material-ui/core';
+import { useStateValue } from '../store/StateProvider';
+import {fillResults} from '../store/reducer';
+import moment from 'moment';
 
 function SearchModule() {
   const [selectedDateFrom, setSelectedDateFrom] = useState(new Date());
   const [selectedDateTo, setSelectedDateTo] = useState(new Date());
   const [inputUserValue, setInputUserValue] = useState('');
   const [inputStatusValue, setInputStatusValue] = useState('');
+  const[, dispatch] = useStateValue();
 
-  const handleSubmit = e => {
+  const normalizeResults = results => {
+    let normalized = [...results];
+	  normalized.forEach(row => {
+			for (let key in row) {
+				if (typeof row[key] === 'string') {
+          row[key] = row[key].trim();
+				}
+				if (key === 'StartTime' || key === 'EndTime' || key === 'AuditDate') {
+					let date = moment(row[key]);
+					row[key] = `${date.utc().format('HH:mm:ss')} ${date.utc().format('DD-MM-YYYY')} UTC`;
+				}
+			}
+    })
+    return normalized
+	}
+
+  const handleSubmit = async e => {
       e.preventDefault();
+      try {
+        let response = await fetch('http://localhost:9000/');
+        response = await response.json();
+        let results = normalizeResults(response);
+        let action = {
+          type: fillResults,
+          payload: results
+        }
+        dispatch(action);
+      } catch(err) {console.log(err);}
+      
   }
 
   return (
