@@ -45,3 +45,22 @@
     background-color: white;
     cursor: default;
 }
+
+.MuiToolbar-root > div {
+    display: flex;
+}
+
+.MuiTableRow-footer:hover {
+    background-color: white;
+    cursor: default;
+    margin-left: auto;
+}
+
+.footer__container {
+    margin-left: auto;
+}
+
+.MuiToolbar-root:hover {
+    background-color: white;
+    cursor: default;
+}
