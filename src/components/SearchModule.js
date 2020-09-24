@@ -7,16 +7,16 @@ import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import {IconButton} from '@material-ui/core';
 import { useStateValue } from '../store/StateProvider';
+import Button from '@material-ui/core/Button';
 import {fillResults, toggleLoadingAnimation, selectResult} from '../store/reducer';
 import moment from 'moment';
 
 function SearchModule() {
-  const [selectedDateFrom, setSelectedDateFrom] = useState(new Date());
-  const [selectedDateTo, setSelectedDateTo] = useState(new Date());
+  const [selectedDateFrom, setSelectedDateFrom] = useState(null);
+  const [selectedDateTo, setSelectedDateTo] = useState(null);
   const [inputUserValue, setInputUserValue] = useState('');
   const [inputStatusValue, setInputStatusValue] = useState('');
   const[, dispatch] = useStateValue();
-
   const normalizeResults = results => {
     let normalized = [...results];
 	  normalized.forEach(row => {
@@ -31,24 +31,63 @@ function SearchModule() {
 			}
     })
     return normalized
-	}
+  }
+  
+  const toggleLoading = () => {
+    dispatch({type: toggleLoadingAnimation});
+  }
 
   const handleSubmit = async e => {
+      const API = 'http://localhost:9000/api/v1/getData';
       e.preventDefault();
-      dispatch({type: toggleLoadingAnimation});
+      toggleLoading();
       dispatch({type: selectResult, payload: null});
       try {
-        let response = await fetch('http://localhost:9000/');
+        if(selectedDateFrom === null && selectedDateTo === null && inputUserValue === '' && inputStatusValue ==='')
+        {
+          alert('Nie mogę wykonać pustego zapytania!');
+          toggleLoading();
+          return
+        }
+        let data = {
+          dateFrom: selectedDateFrom,
+          dateTo: selectedDateTo,
+          user: inputUserValue,
+          status: inputStatusValue
+        }
+        let response = await fetch(API, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
         response = await response.json();
+        if (response === null) {
+          alert('Brak wyników wyszukiwania!');
+          toggleLoading();
+          return
+        }
         let results = normalizeResults(response);
         let action = {
           type: fillResults,
           payload: results
         }
-        dispatch({type: toggleLoadingAnimation});
+        toggleLoading();
         dispatch(action);
-      } catch(err) {alert(err);}
+      } catch(err) {
+        toggleLoading();
+        alert(err);
+      }
       
+  }
+
+  const clearInputs = () => {
+    setSelectedDateFrom(null);
+    setSelectedDateTo(null);
+    setInputUserValue('');
+    setInputStatusValue('');
   }
 
   return (
@@ -70,14 +109,18 @@ function SearchModule() {
             </ThemeProvider>
 
             <TextField variant='outlined' label='Użytkownik'
-                       InputLabelProps={{shrink: true}} onChange={e => setInputUserValue(e.target.value)}/>
+                       InputLabelProps={{shrink: true}} onChange={e => setInputUserValue(e.target.value)}
+                       value={inputUserValue}/>
             <TextField variant='outlined' label='Status'
-                       InputLabelProps={{shrink: true}} onChange={e => setInputStatusValue(e.target.value)}/>
+                       InputLabelProps={{shrink: true}} onChange={e => setInputStatusValue(e.target.value)}
+                       value={inputStatusValue}/>
 
             <IconButton className='form__searchButton' onClick={e => handleSubmit(e)}>
               <input type='submit' style={{display: 'none'}}/>
               <SearchIcon/>
             </IconButton>
+            
+            <Button variant='contained' onClick={() => clearInputs()}>Wyczyść</Button>
 
         </form>
       </div>
