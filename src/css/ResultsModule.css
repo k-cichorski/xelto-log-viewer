@@ -9,7 +9,11 @@
     margin-left: 25px;
     color:grey;
     max-height: 550px;
-    margin-top: 10px;
+    margin-top: 5px;
+}
+
+.results__tableSelectedRow {
+    background-color: lightgray;
 }
 
 .results__container {

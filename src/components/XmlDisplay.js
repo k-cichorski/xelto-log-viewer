@@ -11,6 +11,8 @@ import Paper from '@material-ui/core/Paper';
 const DisplayXML = ({props}) => {
 	const {selectedResult} = props;
 	return (
+		<>
+			<p>ID rekordu: {selectedResult.Id}</p>
 			<div className='xmlDisplay__container'>
 				<div className='xmlDisplay'>
 						<TableContainer component={Paper} className='xmlDisplay__tableContainer'>
@@ -48,6 +50,7 @@ const DisplayXML = ({props}) => {
 				</TableContainer>
 				</div>
 			</div>
+			</>
 	)
 }
 

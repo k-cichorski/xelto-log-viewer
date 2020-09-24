@@ -7,6 +7,10 @@ html, body {
   font-family: 'Titillium Web', sans-serif !important;
 }
 
+p {
+  color: grey;
+}
+
 ::-webkit-scrollbar {
   width: 2px;
   height: 4px;

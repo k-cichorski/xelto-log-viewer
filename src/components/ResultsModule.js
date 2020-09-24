@@ -12,7 +12,7 @@ import {selectResult, toggleLoadingAnimation} from '../store/reducer';
 
 function ResultsModule({props}) {
 	let {searchResults} = props;
-	const [, dispatch] = useStateValue();
+	const [{selectedResult}, dispatch] = useStateValue();
 	
 	const handleRowClik = id => {
 			let action = {
@@ -45,7 +45,8 @@ function ResultsModule({props}) {
 
 							<TableBody>
 								{searchResults?.map(row => (
-									<TableRow key={row.Id} onClick={() => handleRowClik(row.Id)}>
+									<TableRow key={row.Id} onClick={() => handleRowClik(row.Id)}
+														className={selectedResult?.Id === row.Id&&'results__tableSelectedRow'}>
 										<TableCell align='center' component='th' scope='row'>{row.MobileUserId}</TableCell>
 										<TableCell align='center'>{row.MobileDomain}</TableCell>
 										<TableCell align='center'>{row.Branch}</TableCell>
