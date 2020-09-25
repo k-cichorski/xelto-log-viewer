@@ -66,6 +66,7 @@ function SearchModule() {
         response = await response.json();
         if (response === null) {
           alert('Brak wyników wyszukiwania!');
+          dispatch({type: fillResults, payload: null});
           toggleLoading();
           return
         }
