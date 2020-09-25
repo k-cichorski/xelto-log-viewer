@@ -20,7 +20,6 @@ function App() {
             <CircularProgress className='loading__animation'/>
             :searchResults &&
             <ResultsModule props={{searchResults}} />
-
           }
 
           {!loadingData&&

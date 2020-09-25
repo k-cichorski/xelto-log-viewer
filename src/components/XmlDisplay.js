@@ -12,6 +12,7 @@ const DisplayXML = ({props}) => {
 	const {selectedResult} = props;
 	return (
 		<>
+			{/* IDs below are not the same as ones in the database, db query returns them as indexes of result items*/}
 			<p>ID rekordu: {selectedResult.Id}</p>
 			<div className='xmlDisplay__container'>
 				<div className='xmlDisplay'>
