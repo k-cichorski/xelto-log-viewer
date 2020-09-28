@@ -4,29 +4,23 @@
     display: flex;
     flex-direction: row;
     margin: 20px auto;
-    height: 10%;
 }
-
-/* .MuiInputBase-root > input {
-    color: white;
-}
-
-.MuiFormControl-root > label {
-    color: white;
-} */
 
 .MuiFormControl-root {
     margin: 15px !important;
 }
 
-/* .MuiSvgIcon-root {
-    color: white;
-} */
 .searchModule__form {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
     align-items: center;
+}
+
+.form__elementsContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 .form__column > input {

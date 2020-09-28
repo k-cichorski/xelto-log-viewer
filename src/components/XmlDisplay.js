@@ -26,7 +26,7 @@ const DisplayXML = ({props}) => {
 
 										<TableBody>
 											<TableRow>
-												<TableCell align='center' className='table__xmlCell'>{selectedResult.Inputs}</TableCell>
+												<TableCell align='center' className='table__xmlCell'>{selectedResult.Inputs && selectedResult.Inputs}</TableCell>
 											</TableRow>
 										</TableBody>
 								</Table>

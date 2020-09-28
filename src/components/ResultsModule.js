@@ -176,26 +176,26 @@ function ResultsModule({props}) {
 					</TableContainer>
 				</div>
 				<div className='footer__container'>
-				<ThemeProvider theme={theme}>
-								<TableFooter>
-									<TableRow>
-										<TablePagination
-											rowsPerPageOptions={[5, 10, 25, { label: 'Wszystkie', value: -1 }]}
-											count={searchResults.length}
-											rowsPerPage={rowsPerPage}
-											page={page}
-											SelectProps={{
-												inputProps: { 'aria-label': 'rows per page' },
-												native: true,
-											}}
-											onChangePage={handleChangePage}
-											onChangeRowsPerPage={handleChangeRowsPerPage}
-											ActionsComponent={TablePaginationActions}
-										/>
-									</TableRow>
-								</TableFooter>
-							</ThemeProvider>
-							</div>
+					<ThemeProvider theme={theme}>
+						<TableFooter>
+							<TableRow>
+								<TablePagination
+									rowsPerPageOptions={[5, 10, 25, { label: 'Wszystkie', value: -1 }]}
+									count={Math.ceil(searchResults.length/rowsPerPage)}
+									rowsPerPage={rowsPerPage}
+									page={page}
+									SelectProps={{
+										inputProps: { 'aria-label': 'rows per page' },
+										native: true,
+									}}
+									onChangePage={handleChangePage}
+									onChangeRowsPerPage={handleChangeRowsPerPage}
+									ActionsComponent={TablePaginationActions}
+								/>
+							</TableRow>
+						</TableFooter>
+					</ThemeProvider>
+				</div>
 			</div>
 	)
 }
